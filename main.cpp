@@ -1,5 +1,6 @@
 #include <QCoreApplication>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -11,7 +12,7 @@ int main(int argc, char *argv[])
     {
         int N;
         cin >> N;
-        int *a = new int[N];
+        vector <int> a (N, 0);
         for (int i = 0; i < N; i++)
         {
             cin >> a[i];
@@ -22,16 +23,14 @@ int main(int argc, char *argv[])
             {
                 if ( a[k] < a[i] )
                 {
-                    int temp = a[k];
-                    a[k] = a[i];
-                    a[i] = temp;
+                    swap( a[k] , a[i] );
                 }
             }
         }
         int Nkomb = 1;
         for (int n = N - 1; n >= 0 ; n--)
         {
-            if( a[n] >= n )
+            if( a[n] > n )
             {
                 Nkomb = 0;
                 break;
@@ -39,7 +38,6 @@ int main(int argc, char *argv[])
             Nkomb = Nkomb * (n - a[n] + 1);
         }
         cout << Nkomb << endl;
-        delete []a;
     }
     return a1.exec();
 }
